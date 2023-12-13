@@ -4,6 +4,8 @@ Welcome to the LibrePass Documentation Repository! This repository contains tech
 
 ## Important Note
 
+> The LibrePass Manual repository is not yet available.
+
 If you are looking for user manuals, guides, and information on how to use the LibrePass application, please visit the [LibrePass Manual Repository](https://github.com/librepass/librepass-manual). The manual repository is dedicated to providing comprehensive information for end-users, ensuring a smooth experience with the LibrePass app.
 
 ## Contents
