@@ -52,7 +52,7 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
   
 **Request:**
 
-```json
+```jsonc
 // For login grant type
 {
   "email": "string",
