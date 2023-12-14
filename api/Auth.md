@@ -14,15 +14,15 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 
 **Request:**
 
-```json
+```jsonc 
 {
   "email": "string",
   "passwordHint": "string",
   "sharedKey": "string",
   "publicKey": "string",
-  "parallelism": 1,
-  "memory": 1024,
-  "iterations": 10
+  "parallelism": 3, // Argon2ID parameter (default is 3)
+  "memory": 65535, // Argon2ID parameter (default is 64MiB)
+  "iterations": 4 // Argon2ID parameter (default is 4)
 }
 ```
 

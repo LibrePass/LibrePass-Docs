@@ -14,18 +14,18 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Request:**
 
-```json
+```jsonc
 {
   "oldSharedKey": "string",
   "newPublicKey": "string",
   "newSharedKey": "string",
   "newPasswordHint": "string",
-  "parallelism": 1,
-  "memory": 1024,
-  "iterations": 10,
+  "parallelism": 3, // Argon2ID parameter (default is 3)
+  "memory": 65535, // Argon2ID parameter (default is 64MiB)
+  "iterations": 4, // Argon2ID parameter (default is 4)
   "ciphers": [
     {
-      "id": 1,
+      "id": "uuid",
       "data": "string"
     }
   ]
