@@ -30,7 +30,7 @@ LibrePass utilizes Argon2id, a memory-hard and secure password hashing function,
 
    3. **Encryption Key**
 
-   The encryption is derived from the user's private and pubkic key using X25519 algorithm. This key is not sent to the server and is used to encrypt the vault.
+   The encryption is derived from the user's private and public key using X25519 algorithm. This key is not sent to the server and is used to encrypt the vault.
 
    ```
    X25519ComputeSharedSecret(userPrivateKey, userPublicKey) -> userEncryptionKey
@@ -54,7 +54,7 @@ LibrePass utilizes Argon2id, a memory-hard and secure password hashing function,
 
 3. **Vault Encryption**
 
-The ciphers is encrypted using the 256-bit symetric encryption algorithm named AES in GCM mode using the user's encryption key. Then the encrypted data is sent to the server and stored in the database.
+The ciphers are encrypted using the 256-bit symetric encryption algorithm named AES in GCM mode using the user's encryption key. Then the encrypted data is sent to the server and stored in the database.
 
 ```
 AesGcmEncrypt(userEncryptionKey, cipherData) -> encryptedCipherData
