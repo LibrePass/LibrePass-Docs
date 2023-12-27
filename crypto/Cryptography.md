@@ -1,5 +1,7 @@
 # LibrePass Cryptography Documentation
 
+![Cryptography diagram](/diagrams/cryptography.drawio.svg)
+
 ## Cryptography Overview
 
 LibrePass employs a robust cryptographic framework to ensure the security and privacy of user data. This documentation outlines the key cryptographic mechanisms used in the project, including password hashing, key pair generation, data encryption, and decryption.
