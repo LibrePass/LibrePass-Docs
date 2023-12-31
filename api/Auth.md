@@ -91,7 +91,7 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 - `user`: User ID.
 - `code`: Verification code.
 
-**Response:** Returns a standard response indicating the success or failure of email verification.
+**Response:** Redirects to a page with information about a correctly verified email address or returns failure of email verification.
 
 #### 6. Resend Verification Email
 
