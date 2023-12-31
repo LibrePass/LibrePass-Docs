@@ -6,7 +6,45 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 ### Endpoints
 
-#### 1. Change Password
+#### 1. Change Email Address
+
+**Endpoint:** `PATCH /api/user/email`
+
+**Description:** Allows a user to change their email address and update related information.
+
+**Request:**
+
+```jsonc
+{
+  "newEmail": "string",
+  "oldSharedKey": "string",
+  "newPublicKey": "string",
+  "newSharedKey": "string",
+  "ciphers": [
+    {
+      "id": "uuid",
+      "data": "string"
+    }
+  ]
+}
+```
+
+**Response:** Returns a standard response indicating the success or failure of the email address change operation.
+
+#### 2. Verify New Email Address
+
+**Endpoint:** `GET /api/user/verifyNewEmail`
+
+**Description:** Verifies the user's change email request using a verification code.
+
+**Query Parameters:**
+
+- `user`: User ID.
+- `code`: Verification code.
+
+**Response:** Redirects to a page with information about a correctly verified email address or returns failure of email verification.
+
+#### 3. Change Password
 
 **Endpoint:** `PATCH /api/user/password`
 
@@ -34,7 +72,7 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Response:** Returns a standard response indicating the success or failure of the password change operation.
 
-#### 2. Setup Two-Factor Authentication
+#### 4. Setup Two-Factor Authentication
 
 **Endpoint:** `POST /api/user/setup/2fa`
 
@@ -52,7 +90,7 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Response:** Returns a response with the generated recovery code if the 2FA setup is successful.
 
-#### 3. Delete Account
+#### 5. Delete Account
 
 **Endpoint:** `DELETE /api/user/delete`
 
