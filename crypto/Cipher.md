@@ -84,10 +84,9 @@ Cipher data for logins.
 - `password`: The login password. (optional)
 - `passwordHistory`: The history of passwords. (optional)
 - `uris`: The list of uris. (optional)
-- `twoFactor`: The two-factor secret. (optional)
+- `twoFactor`: The two-factor URI encoded. (optional)
 - `notes`: The note for the cipher. (optional)
 - `fields`: The custom fields for the cipher. (optional) [Custom Fields](#custom-fields)
-
 
 #### Secure Note Cipher
 
@@ -112,7 +111,6 @@ Cipher data for secure notes.
 - `title`: The title of the note.
 - `note`: The secure note.
 - `fields`: The custom fields for the cipher. (optional) [Custom Fields](#custom-fields)
-
 
 #### Card Cipher
 
@@ -147,7 +145,6 @@ Cipher data for cards.
 - `code`" The card CVV code. (optional)
 - `notes`" The note for the cipher. (optional)
 - `fields`: The custom fields for the cipher. (optional) [Custom Fields](#custom-fields)
-
 
 ### Special Fields
 
@@ -186,6 +183,7 @@ History of passwords stored in login cipher.
   }
 ]
 ```
+
 **Where:**
 
 - `password`: The login password.
