@@ -2,7 +2,7 @@
 
 ## User
 
-The `User` endpoint is responsible for managing user-related actions within the LibrePass application. This includes changing passwords, setting up two-factor authentication (2FA), and deleting user accounts.
+The `User` endpoint is responsible for managing user-related actions within the LibrePass application. This includes changing email and password, setting up two-factor authentication (2FA), and deleting user accounts.
 
 ### Endpoints
 
