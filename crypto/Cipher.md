@@ -121,8 +121,8 @@ Cipher data for cards.
   "name": "string",
   "cardholderName": "string",
   "number": "string",
-  "expMonth": 12,
-  "expYear": 2030,
+  "expMonth": "09",
+  "expYear": "30",
   "code": "string",
   "notes": "string",
   "fields": [
