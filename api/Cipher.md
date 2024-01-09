@@ -6,7 +6,27 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 ### Endpoints
 
-#### 1. Insert Cipher
+#### 1. Save Cipher
+
+**Endpoint:** `PUT /api/cipher`
+
+**Description:** Inserts or updates cipher for the authenticated user.
+
+**Request:**
+
+```json
+{
+  "protectedData": "string",
+  "owner": "string"
+}
+```
+
+**Response:** Returns the ID of the cipher.
+
+#### 2. Insert Cipher
+
+> [!WARNING]
+> Deprecated, use [save](#1-save-cipher) instead
 
 **Endpoint:** `PUT /api/cipher`
 
@@ -23,7 +43,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns the ID of the newly created cipher.
 
-#### 2. Get All Ciphers
+#### 3. Get All Ciphers
 
 **Endpoint:** `GET /api/cipher`
 
@@ -31,7 +51,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns an array of encrypted ciphers.
 
-#### 3. Sync Ciphers
+#### 4. Sync Ciphers
 
 **Endpoint:** `GET /api/cipher/sync`
 
@@ -43,7 +63,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns a `SyncResponse` object containing updated cipher IDs and encrypted ciphers.
 
-#### 4. Get Cipher
+#### 5. Get Cipher
 
 **Endpoint:** `GET /api/cipher/{id}`
 
@@ -55,7 +75,10 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns the encrypted details of the specified cipher.
 
-#### 5. Update Cipher
+#### 6. Update Cipher
+
+> [!WARNING]
+> Deprecated, use [save](#1-save-cipher) instead
 
 **Endpoint:** `PATCH /api/cipher/{id}`
 
@@ -75,7 +98,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns the ID of the updated cipher.
 
-#### 6. Delete Cipher
+#### 7. Delete Cipher
 
 **Endpoint:** `DELETE /api/cipher/{id}`
 
@@ -87,7 +110,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns the ID of the deleted cipher.
 
-#### 7. Get Website Icon
+#### 8. Get Website Icon
 
 **Endpoint:** `GET /api/cipher/icon`
 
