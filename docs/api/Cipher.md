@@ -1,4 +1,4 @@
-# LibrePass Cipher Endpoint Documentation
+# Cipher Endpoint
 
 ## Cipher
 
@@ -25,8 +25,9 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 #### 2. Insert Cipher
 
-> [!WARNING]
-> Deprecated, use [save](#1-save-cipher) instead
+!!! warning
+    Deprecated, use [save](#1-save-cipher) instead
+
 
 **Endpoint:** `PUT /api/cipher`
 

@@ -1,4 +1,4 @@
-# LibrePass Auth Endpoint Documentation
+# Auth Endpoint
 
 ## Auth
 

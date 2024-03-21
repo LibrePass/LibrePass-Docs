@@ -50,8 +50,8 @@ sudo docker-compose up
 
 ### 4. Update the server version
 
-> [!NOTE]
-> Do not forget to update the server version regularly.
+!!! note
+    Do not forget to update the server version regularly.
 
 ```bash
 # Download the latest version

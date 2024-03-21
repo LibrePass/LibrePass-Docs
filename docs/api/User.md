@@ -1,4 +1,4 @@
-# LibrePass User Endpoint Documentation
+# User Endpoint
 
 ## User
 
@@ -14,7 +14,7 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Request:**
 
-```jsonc
+```json
 {
   "newEmail": "string",
   "oldSharedKey": "string",
@@ -52,7 +52,7 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Request:**
 
-```jsonc
+```json
 {
   "oldSharedKey": "string",
   "newPublicKey": "string",
