@@ -16,7 +16,6 @@ Ciphers are encoded in json format. They are encrypted using AES GCM encryption.
   "collection": "uuid",
   "favorite": false,
   "rePrompt": false,
-  "version": 1,
   "created": "unix timestamp",
   "lastModified": "unix timestamp"
 }
@@ -31,7 +30,6 @@ Ciphers are encoded in json format. They are encrypted using AES GCM encryption.
 - `collection`: The identifier of the collection to which the cipher belongs. (optional)
 - `favorite`: Whether the cipher is marked as favorite.
 - `rePrompt`: Whether the password should be re-prompted. (Only UI-related)
-- `version`: The version of the cipher. (The current version is 1)
 - `created`: The date when the cipher was created.
 - `lastModified`: The date when the cipher was last modified.
 
