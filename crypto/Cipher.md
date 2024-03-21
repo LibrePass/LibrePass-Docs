@@ -53,6 +53,7 @@ Cipher data for logins.
 {
   "name": "string",
   "username": "string",
+  "email": "string",
   "password": "string",
   "passwordHistory": [
     {
@@ -80,6 +81,7 @@ Cipher data for logins.
 - `name`: The name of the cipher.
 - `username`: The login username. (optional)
 - `password`: The login password. (optional)
+- `email`: The login email. (optional)
 - `passwordHistory`: The history of passwords. (optional)
 - `uris`: The list of uris. (optional)
 - `twoFactor`: The two-factor URI encoded. (optional)
