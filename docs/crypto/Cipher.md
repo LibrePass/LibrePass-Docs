@@ -1,4 +1,4 @@
-# Cipher Documentation
+# Cipher
 
 ## Overview
 

@@ -1,4 +1,4 @@
-# LibrePass Collection Endpoint Documentation
+# Collection Endpoint
 
 ## Collection
 
