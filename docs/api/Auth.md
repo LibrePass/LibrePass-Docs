@@ -14,7 +14,7 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 
 **Request:**
 
-```jsonc 
+```json
 {
   "email": "string",
   "passwordHint": "string",
@@ -52,7 +52,7 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
   
 **Request:**
 
-```jsonc
+```json
 // For login grant type
 {
   "email": "string",
