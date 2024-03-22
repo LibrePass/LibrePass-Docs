@@ -1,4 +1,5 @@
 site_name: LibrePass Documentation
+site_url: https://docs.librepass.org
 
 theme:
   name: material
