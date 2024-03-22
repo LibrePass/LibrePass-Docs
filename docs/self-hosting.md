@@ -1,17 +1,25 @@
-# Self-hosting LibrePass
+# Self-Hosting Server
 
-LibrePass is an open source project and allows anyone to create their own server for their own needs.
+LibrePass, an open-source password manager, empowers you to take charge of your data by self-hosting it on your own server.
+This approach grants you complete privacy and eliminates dependence on third-party services.
 
-## Dependencies
+## Before you begin
 
-- [Docker and Docker Compose](https://docs.docker.com/engine/install/)
+- **Technical knowledge**: This guide assumes some familiarity with Docker and terminal commands.
+- **Security**: Self-hosting requires managing your server's security. Ensure you understand the risks and how to mitigate them.
+
+
+## Requirements
+
+- A server running Linux (amd64 or arm64)
+- Docker and Docker Compose installed on your server (https://docs.docker.com/engine/install/)
 
 ## Steps
 
-### 1. Setup environment variables
+### Prepare Environment Variables
 
-Create a `.env` file using the following [template](https://github.com/LibrePass/LibrePass-Server/blob/main/.env.schema)
-
+Create a file named `.env` in your LibrePass directory. You can use the following [template](https://github.com/LibrePass/LibrePass-Server/blob/main/.env.schema).
+ 
 #### Variables
 
 - `PORT` - The port number on which the application listens for incoming requests.
@@ -35,31 +43,43 @@ Create a `.env` file using the following [template](https://github.com/LibrePass
 - `MAIL_SMTP_TLS_ENABLED` - Whether to use TLS encryption for communication with the SMTP server. Set it to true for secure email delivery.
 - `SMTP_EMAIL_ADDRESS` - The email address used as the "from" address for sending email notifications from the application.
 
-### 2. Setup docker configuration
+### Set Up Docker Configuration
 
-Create a `docker-compose.yml` file using the following [template](https://github.com/LibrePass/LibrePass-Server/blob/main/docker-compose.yml)
+Create a file named `docker-compose.yml` in your LibrePass directory. Use the following [template](https://github.com/LibrePass/LibrePass-Server/blob/main/docker-compose.yml).
 
-### 3. Start the server
+### Launch Server
 
 ```bash
-sudo docker compose up
+sudo docker compose up -d
 
 # or if you using an older docker version, use the `docker-compose` command instead
-sudo docker-compose up
+sudo docker-compose up -d
 ```
 
-### 4. Update the server version
+The `-d` flag runs the container in detached mode, allowing you to exit the terminal without stopping LibrePass.
+
+### Update Server
 
 !!! note
     Do not forget to update the server version regularly.
+
+To keep your server secure, it's crucial to update LibrePass regularly. Run these commands in your terminal:
 
 ```bash
 # Download the latest version
 sudo docker compose pull
 # Restart the server
-sudo docker compose up
+sudo docker compose up -d
 
 # or if you using an older docker version, use the `docker-compose` command instead
 sudo docker-compose pull
-sudo docker-compose up
+sudo docker-compose up -d
 ```
+
+## Addional Tips
+
+- **Backups** - Regularly back up your LibrePass database for disaster recovery.
+- **Security** - Consider implementing additional security measures like firewalls for your server.
+
+By following these steps, you'll have a self-hosted LibrePass server up and running, giving you complete control over your passwords!
+
