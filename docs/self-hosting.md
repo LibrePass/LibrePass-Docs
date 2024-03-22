@@ -12,7 +12,7 @@ This approach grants you complete privacy and eliminates dependence on third-par
 ## Requirements
 
 - A server running Linux (amd64 or arm64)
-- Docker and Docker Compose installed on your server (https://docs.docker.com/engine/install/)
+- [Docker and Docker Compose](https://docs.docker.com/engine/install/) installed on your server
 
 ## Steps
 
@@ -82,4 +82,3 @@ sudo docker-compose up -d
 - **Security** - Consider implementing additional security measures like firewalls for your server.
 
 By following these steps, you'll have a self-hosted LibrePass server up and running, giving you complete control over your passwords!
-
