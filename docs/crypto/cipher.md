@@ -4,7 +4,7 @@
 
 Ciphers are encoded in json format. They are encrypted using AES GCM encryption.
 
-### Cipher in JSON format
+### Encrypted Cipher in JSON format
 
 ```json
 
@@ -58,11 +58,11 @@ Cipher data for logins.
   "passwordHistory": [
     {
       "password": "string",
-      "lastUsed": "unix timestamp",
+      "lastUsed": "unix timestamp"
     }
   ],
   "uris": [
-    "string",
+    "string"
   ],
   "twoFactor": "string",
   "notes": "string",
@@ -70,7 +70,7 @@ Cipher data for logins.
     {
       "name": "string",
       "type": 0,
-      "value": "string",
+      "value": "string"
     }
   ]
 }
@@ -100,7 +100,7 @@ Cipher data for secure notes.
     {
       "name": "string",
       "type": 0,
-      "value": "string",
+      "value": "string"
     }
   ]
 }
@@ -129,7 +129,7 @@ Cipher data for cards.
     {
       "name": "string",
       "type": 0,
-      "value": "string",
+      "value": "string"
     }
   ]
 }
@@ -155,7 +155,7 @@ Cipher data for cards.
   {
     "name": "string",
     "type": 0,
-    "value": "string",
+    "value": "string"
   }
 ]
 ```
@@ -179,7 +179,7 @@ History of passwords stored in login cipher.
 [
   {
     "password": "string",
-    "lastUsed": "unix timestamp",
+    "lastUsed": "unix timestamp"
   }
 ]
 ```
