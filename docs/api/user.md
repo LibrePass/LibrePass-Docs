@@ -6,7 +6,7 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 ### Endpoints
 
-#### 1. Change Email Address
+#### Change Email Address
 
 **Endpoint:** `PATCH /api/user/email`
 
@@ -29,9 +29,19 @@ The `User` endpoint is responsible for managing user-related actions within the 
 }
 ```
 
+**Where:**
+
+- `newEmail`: The new email address.
+- `oldSharedKey`: The [shared key](../crypto/cryptography.md#user-authentication) computed using old email as salt in password hash.
+- `newPublicKey`: The [public key](../crypto/cryptography.md#public-key) computed using new email address as salt in password hash.
+- `newSharedKey`: The [shared key](../crypto/cryptography.md#user-authentication) computed using new email address as salt in password hash.
+- `ciphers`: All user ciphers, re-encrypted with new encryption key.
+    - `id`: The cipher identifier.
+    - `data`: The encrypted cipher data, only "protectedData" from encrypted cipher.
+
 **Response:** Returns a standard response indicating the success or failure of the email address change operation.
 
-#### 2. Verify New Email Address
+#### Verify New Email Address
 
 **Endpoint:** `GET /api/user/verifyNewEmail`
 
@@ -44,7 +54,7 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Response:** Redirects to a page with information about a correctly verified email address or returns failure of email verification.
 
-#### 3. Change Password
+#### Change Password
 
 **Endpoint:** `PATCH /api/user/password`
 
@@ -58,9 +68,9 @@ The `User` endpoint is responsible for managing user-related actions within the 
   "newPublicKey": "string",
   "newSharedKey": "string",
   "newPasswordHint": "string",
-  "parallelism": 3, // Argon2ID parameter (default is 3)
-  "memory": 65535, // Argon2ID parameter (default is 64MiB)
-  "iterations": 4, // Argon2ID parameter (default is 4)
+  "parallelism": 3,
+  "memory": 65535,
+  "iterations": 4,
   "ciphers": [
     {
       "id": "uuid",
@@ -70,9 +80,22 @@ The `User` endpoint is responsible for managing user-related actions within the 
 }
 ```
 
+**Where:**
+
+- `oldSharedKey`: The [shared key](../crypto/cryptography.md#user-authentication) computed using old email as salt in password hash.
+- `newPublicKey`: The [public key](../crypto/cryptography.md#public-key) computed using new email address as salt in password hash.
+- `newSharedKey`: The [shared key](../crypto/cryptography.md#user-authentication) computed using new email address as salt in password hash.
+- `newPasswordHint`: The new user's hint for password (Optional).
+- `parallelism`: The argon2id parameter (default is 3)
+- `memory`: The argon2id parameter (default is 64MiB)
+- `iterations`: The argon2id parameter (default is 4)
+- `ciphers`: All user ciphers, re-encrypted with new encryption key.
+    - `id`: The cipher identifier.
+    - `data`: The encrypted cipher data, only "protectedData" from encrypted cipher.
+
 **Response:** Returns a standard response indicating the success or failure of the password change operation.
 
-#### 4. Setup Two-Factor Authentication
+#### Setup Two-Factor Authentication
 
 **Endpoint:** `POST /api/user/setup/2fa`
 
@@ -88,9 +111,15 @@ The `User` endpoint is responsible for managing user-related actions within the 
 }
 ```
 
+**Where:**
+
+- `sharedKey`: The [shared key](../crypto/cryptography.md#user-authentication) for password verification.
+- `secret`: The secret for TOTP.
+- `code`: The current TOTP code.
+
 **Response:** Returns a response with the generated recovery code if the 2FA setup is successful.
 
-#### 5. Delete Account
+#### Delete Account
 
 **Endpoint:** `DELETE /api/user/delete`
 
@@ -105,23 +134,11 @@ The `User` endpoint is responsible for managing user-related actions within the 
 }
 ```
 
+**Where:**
+
+- `sharedKey`: The [shared key](../crypto/cryptography.md#user-authentication) for password verification.
+- `code`: The current TOTP code (Only if 2-fa is enabled).
+
 **Response:** Returns a standard response indicating the success or failure of the account deletion.
 
-### Dependencies
-
-The `User` endpoint relies on several repositories for database operations:
-
-- `UserRepository`: Manages user data.
-- `TokenRepository`: Handles user tokens.
-- `CipherRepository`: Manages user ciphers.
-- `CollectionRepository`: Deals with user collections.
-
 ### Important Notes
-
-1. **Authorization:** Endpoints in this endpoint require user authorization, which is handled by the `@AuthorizedUser` annotation.
-
-2. **Validation:** Shared key validation is performed using the `validateSharedKey` function.
-
-3. **Two-Factor Authentication:** Two-factor authentication is implemented using TOTP (Time-based One-Time Password) codes.
-
-4. **Error Handling:** The endpoint throws `InvalidTwoFactorCodeException` in case of an invalid 2FA code.
