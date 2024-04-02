@@ -6,11 +6,11 @@ The `Collection` endpoint manages operations related to user collections in the 
 
 ### Endpoints
 
-#### 1. Insert Collection
+#### Save Collection
 
 **Endpoint:** `PUT /api/collection`
 
-**Description:** Inserts a new collection for the authenticated user.
+**Description:** Updates or creates a new collection for the authenticated user.
 
 **Request:**
 
@@ -21,9 +21,14 @@ The `Collection` endpoint manages operations related to user collections in the 
 }
 ```
 
+**Where:**
+
+- `id`: The cipher identifier (UUID).
+- `name`: The name of the collection.
+
 **Response:** Returns the ID of the newly created collection.
 
-#### 2. Get All Collections
+#### Get All Collections
 
 **Endpoint:** `GET /api/collection`
 
@@ -31,7 +36,7 @@ The `Collection` endpoint manages operations related to user collections in the 
 
 **Response:** Returns an array of `CipherCollection` objects containing collection details.
 
-#### 3. Get Collection
+#### Get Collection
 
 **Endpoint:** `GET /api/collection/{id}`
 
@@ -43,27 +48,7 @@ The `Collection` endpoint manages operations related to user collections in the 
 
 **Response:** Returns the details of the specified collection in the form of a `CipherCollection` object.
 
-#### 4. Update Collection
-
-**Endpoint:** `PATCH /api/collection/{id}`
-
-**Description:** Updates an existing collection for the authenticated user.
-
-**Path Parameter:**
-
-- `{id}`: ID of the collection to update.
-
-**Request:**
-
-```json
-{
-  "name": "string"
-}
-```
-
-**Response:** Returns the ID of the updated collection.
-
-#### 5. Delete Collection
+#### Delete Collection
 
 **Endpoint:** `DELETE /api/collection/{id}`
 
@@ -74,15 +59,3 @@ The `Collection` endpoint manages operations related to user collections in the 
 - `{id}`: ID of the collection to delete.
 
 **Response:** Returns the ID of the deleted collection.
-
-### Dependencies
-
-The `Collection` endpoint relies on the following repository for database operations:
-
-- `CollectionRepository`: Manages user collections.
-
-### Important Notes
-
-1. **Collection ID:** The collection ID is specified in the request body for inserting a collection and as a path parameter for other operations.
-
-2. **Timestamps:** The `created` and `lastModified` timestamps provide information about the collection's creation and modification times.
