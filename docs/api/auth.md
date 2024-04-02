@@ -81,10 +81,10 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 ***For login grant type:***
 
 - `email`: The user's email address.
-- `sharedKey`: The shared key (x25519 shared key) exchanged beetween the user and the server. More information about shared key you can read [here](../crypto/cryptography.md#user-authentication).
+- `sharedKey`: The shared key (x25519 shared key) exchanged between the user and the server. More information about a shared key you can read [here](../crypto/cryptography.md#user-authentication).
 
 ***For 2fa grant type:***
-- `apiKey`: The API key from "login" grant type. This key will be verified after successfully 2fa code verification.
+- `apiKey`: The API key from "login" grant type. This key will be verified after successful 2fa code verification.
 - `code`: The current one-time password.
 
 **Response:** Returns a standard response indicating the success or failure of the OAuth authentication process.
