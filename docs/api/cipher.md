@@ -6,45 +6,31 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 ### Endpoints
 
-#### 1. Save Cipher
+#### Save Cipher
 
 **Endpoint:** `PUT /api/cipher`
 
 **Description:** Inserts or updates cipher for the authenticated user.
 
-**Request:**
-
-```json
-{
-  "protectedData": "string",
-  "owner": "string"
-}
-```
+**Request:** The [Encrypted Cipher](../crypto/cipher.md#encrypted-cipher-in-json-format).
 
 **Response:** Returns the ID of the cipher.
 
-#### 2. Insert Cipher
+#### Insert Cipher
 
-!!! warning
-    Deprecated, use [save](#1-save-cipher) instead
+!!!warning
+    Deprecated, use [save](#save-cipher) instead
 
 
 **Endpoint:** `PUT /api/cipher`
 
 **Description:** Inserts a new cipher for the authenticated user.
 
-**Request:**
-
-```json
-{
-  "protectedData": "string",
-  "owner": "string"
-}
-```
+**Request:** The [Encrypted Cipher](../crypto/cipher.md#encrypted-cipher-in-json-format).
 
 **Response:** Returns the ID of the newly created cipher.
 
-#### 3. Get All Ciphers
+#### Get All Ciphers
 
 **Endpoint:** `GET /api/cipher`
 
@@ -52,7 +38,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns an array of encrypted ciphers.
 
-#### 4. Sync Ciphers
+#### Sync Ciphers
 
 **Endpoint:** `GET /api/cipher/sync`
 
@@ -64,7 +50,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns a `SyncResponse` object containing updated cipher IDs and encrypted ciphers.
 
-#### 5. Get Cipher
+#### Get Cipher
 
 **Endpoint:** `GET /api/cipher/{id}`
 
@@ -74,12 +60,13 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 - `{id}`: ID of the cipher to retrieve.
 
-**Response:** Returns the encrypted details of the specified cipher.
+**Response:** Returns the [Encrypted Cipher](../crypto/cipher.md#encrypted-cipher-in-json-format).
 
-#### 6. Update Cipher
+#### Update Cipher
 
-> [!WARNING]
-> Deprecated, use [save](#1-save-cipher) instead
+!!!warning
+    Deprecated, use [save](#save-cipher) instead
+
 
 **Endpoint:** `PATCH /api/cipher/{id}`
 
@@ -99,7 +86,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns the ID of the updated cipher.
 
-#### 7. Delete Cipher
+#### Delete Cipher
 
 **Endpoint:** `DELETE /api/cipher/{id}`
 
@@ -111,7 +98,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns the ID of the deleted cipher.
 
-#### 8. Get Website Icon
+#### Get Website Icon
 
 **Endpoint:** `GET /api/cipher/icon`
 
@@ -123,18 +110,8 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns the website icon in PNG format or a "Not Found" response if the icon is not available.
 
-### Dependencies
-
-The `Cipher` endpoint relies on the following repository for database operations:
-
-- `CipherRepository`: Manages user ciphers.
-
 ### Important Notes
 
-1. **Validation:** Hexadecimal validation is performed using the `Validator.hexValidator` function.
-
-2. **Cipher Size Limit:** The maximum allowed length for cipher data is specified by the `cipherMaxLength` configuration.
-
-3. **Sync Timestamp:** The synchronization timestamp is used to retrieve updated ciphers since the last synchronization.
-
-4. **Icon Retrieval:** The `getWebsiteIcon` endpoint retrieves a website's icon using the Google API. If unsuccessful, it returns a "Not Found" response.
+- **Cipher Size Limit:** The maximum allowed length for cipher data is specified in the server configuration by the `cipherMaxLength` value.
+- **Sync Timestamp:** The synchronization timestamp is used to retrieve updated ciphers since the last synchronization.
+- **Icon Retrieval:** The `/api/cipher/icon` endpoint retrieves a website's icon using the Google API. If unsuccessful, it returns a "Not Found" response.
