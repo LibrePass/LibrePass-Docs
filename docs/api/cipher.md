@@ -1,16 +1,16 @@
 # Cipher Endpoint
 
-## Cipher
+The `Cipher` endpoint handles operations related to user ciphers in the LibrePass application.
+This includes inserting new ciphers, retrieving all ciphers, syncing ciphers,
+fetching a specific cipher, updating a cipher, and deleting a cipher.
 
-The `Cipher` endpoint handles operations related to user ciphers in the LibrePass application. This includes inserting new ciphers, retrieving all ciphers, syncing ciphers, fetching a specific cipher, updating a cipher, and deleting a cipher.
+## Endpoints
 
-### Endpoints
+### Sync Ciphers
 
-#### Sync Ciphers
+Synchronize the local ciphers database with the server database.
 
 **Endpoint:** `POST /api/cipher/sync`
-
-**Description:** Syncing the local ciphers database with the server database based on the last synchronization timestamp.
 
 **Request:**
 
@@ -38,7 +38,7 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Where:**
 
-- `lastSyncTimestamp`: The unix timestamp (seconds) of the last sync.
+- `lastSyncTimestamp`: The unix timestamp (seconds) of the last synchronization (time of last successful synchronization)
 - `updated`: The new or updated ciphers to save into the server database. (if nothing, send an empty list)
 - `deleted`: The IDs with deleted ciphers to delete it from the server database. (if nothing, send an empty list)
 
@@ -70,11 +70,11 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 - `ids`: The list that contains all IDs of ciphers owned by the user. (used for deleting ciphers from the local database)
 - `cipher`: The new or updated ciphers updated in the server database since last synchronization.
 
-#### Get Website Icon
+### Get Website Icon
+
+Retrieve website icon for a given domain. Currently, uses Google API for retrieving icons.
 
 **Endpoint:** `GET /api/cipher/icon`
-
-**Description:** Retrieves the website icon for a given domain.
 
 **Query Parameter:**
 
@@ -82,8 +82,6 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 **Response:** Returns the website icon in PNG format or a "Not Found" response if the icon is not available.
 
-### Important Notes
+## Important Notes
 
-- **Cipher Size Limit:** The maximum allowed length for cipher data is specified in the server configuration by the `cipherMaxLength` value.
-- **Sync Timestamp:** The synchronization timestamp is used to retrieve updated ciphers since the last synchronization.
-- **Icon Retrieval:** The `/api/cipher/icon` endpoint retrieves a website's icon using the Google API. If unsuccessful, it returns a "Not Found" response.
+- **Rate Limiting:** The endpoint is protected by rate limits.

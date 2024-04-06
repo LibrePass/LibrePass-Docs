@@ -188,3 +188,7 @@ History of passwords stored in login cipher.
 
 - `password`: The login password.
 - `lastUsed`: The date when the password was changed.
+
+## Important Notes
+
+- `Unix timestamp`: The number of seconds since the Unix epoch.
