@@ -6,97 +6,69 @@ The `Cipher` endpoint handles operations related to user ciphers in the LibrePas
 
 ### Endpoints
 
-#### Save Cipher
-
-**Endpoint:** `PUT /api/cipher`
-
-**Description:** Inserts or updates cipher for the authenticated user.
-
-**Request:** The [Encrypted Cipher](../crypto/cipher.md#encrypted-cipher-in-json-format).
-
-**Response:** Returns the ID of the cipher.
-
-#### Insert Cipher
-
-!!!warning
-    Deprecated, use [save](#save-cipher) instead
-
-
-**Endpoint:** `PUT /api/cipher`
-
-**Description:** Inserts a new cipher for the authenticated user.
-
-**Request:** The [Encrypted Cipher](../crypto/cipher.md#encrypted-cipher-in-json-format).
-
-**Response:** Returns the ID of the newly created cipher.
-
-#### Get All Ciphers
-
-**Endpoint:** `GET /api/cipher`
-
-**Description:** Retrieves all ciphers for the authenticated user.
-
-**Response:** Returns an array of encrypted ciphers.
-
 #### Sync Ciphers
 
-**Endpoint:** `GET /api/cipher/sync`
+**Endpoint:** `POST /api/cipher/sync`
 
-**Description:** Syncs ciphers based on the last synchronization timestamp.
-
-**Query Parameters:**
-
-- `lastSync`: Unix timestamp of the last synchronization.
-
-**Response:** Returns a `SyncResponse` object containing updated cipher IDs and encrypted ciphers.
-
-#### Get Cipher
-
-**Endpoint:** `GET /api/cipher/{id}`
-
-**Description:** Retrieves a specific cipher for the authenticated user.
-
-**Path Parameter:**
-
-- `{id}`: ID of the cipher to retrieve.
-
-**Response:** Returns the [Encrypted Cipher](../crypto/cipher.md#encrypted-cipher-in-json-format).
-
-#### Update Cipher
-
-!!!warning
-    Deprecated, use [save](#save-cipher) instead
-
-
-**Endpoint:** `PATCH /api/cipher/{id}`
-
-**Description:** Updates an existing cipher for the authenticated user.
-
-**Path Parameter:**
-
-- `{id}`: ID of the cipher to update.
+**Description:** Syncing the local ciphers database with the server database based on the last synchronization timestamp.
 
 **Request:**
 
 ```json
 {
-  "protectedData": "string"
+  "lastSyncTimestamp": "unix timestamp",
+  "updated": [
+    {
+      "id": "uuid",
+      "owner": "uuid",
+      "type": 0,
+      "protectedData": "string",
+      "collection": "uuid",
+      "favorite": false,
+      "rePrompt": false,
+      "created": "unix timestamp",
+      "lastModified": "unix timestamp"
+    }
+  ],
+  "deleted": [
+    "uuid"
+  ]
 }
 ```
 
-**Response:** Returns the ID of the updated cipher.
+**Where:**
 
-#### Delete Cipher
+- `lastSyncTimestamp`: The unix timestamp (seconds) of the last sync.
+- `updated`: The new or updated ciphers to save into the server database. (if nothing, send an empty list)
+- `deleted`: The IDs with deleted ciphers to delete it from the server database. (if nothing, send an empty list)
 
-**Endpoint:** `DELETE /api/cipher/{id}`
+**Response:**
 
-**Description:** Deletes a specific cipher for the authenticated user.
+```json
+{
+  "ids": [
+    "uuid"
+  ],
+  "ciphers": [
+    {
+      "id": "uuid",
+      "owner": "uuid",
+      "type": 0,
+      "protectedData": "string",
+      "collection": "uuid",
+      "favorite": false,
+      "rePrompt": false,
+      "created": "unix timestamp",
+      "lastModified": "unix timestamp"
+    }
+  ]
+}
+```
 
-**Path Parameter:**
+**Where:**
 
-- `{id}`: ID of the cipher to delete.
-
-**Response:** Returns the ID of the deleted cipher.
+- `ids`: The list that contains all IDs of ciphers owned by the user. (used for deleting ciphers from the local database)
+- `cipher`: The new or updated ciphers updated in the server database since last synchronization.
 
 #### Get Website Icon
 
