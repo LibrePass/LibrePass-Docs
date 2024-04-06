@@ -1,16 +1,15 @@
 # User Endpoint
 
-## User
+The `User` endpoint is responsible for managing user-related actions within the LibrePass application.
+This includes changing email and password, setting up two-factor authentication (2FA), and deleting user accounts.
 
-The `User` endpoint is responsible for managing user-related actions within the LibrePass application. This includes changing email and password, setting up two-factor authentication (2FA), and deleting user accounts.
+## Endpoints
 
-### Endpoints
+### Change Email Address
 
-#### Change Email Address
+Change user's email address and update ciphers due to re-encryption with the new aes key.
 
 **Endpoint:** `PATCH /api/user/email`
-
-**Description:** Allows a user to change their email address and update related information.
 
 **Request:**
 
@@ -41,11 +40,11 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Response:** Returns a standard response indicating the success or failure of the email address change operation.
 
-#### Verify New Email Address
+### Verify New Email Address
+
+Verify the user's change email request using a verification code.
 
 **Endpoint:** `GET /api/user/verifyNewEmail`
-
-**Description:** Verifies the user's change email request using a verification code.
 
 **Query Parameters:**
 
@@ -54,11 +53,11 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Response:** Redirects to a page with information about a correctly verified email address or returns failure of email verification.
 
-#### Change Password
+### Change Password
+
+Change user's password and update ciphers due to re-encryption with the new aes key.
 
 **Endpoint:** `PATCH /api/user/password`
-
-**Description:** Allows a user to change their password and update related information.
 
 **Request:**
 
@@ -95,11 +94,11 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Response:** Returns a standard response indicating the success or failure of the password change operation.
 
-#### Setup Two-Factor Authentication
+### Setup Two-Factor Authentication
+
+Enable two-factor authentication (2FA) for a user and generate a recovery code.
 
 **Endpoint:** `POST /api/user/setup/2fa`
-
-**Description:** Enables two-factor authentication (2FA) for a user and generates a recovery code.
 
 **Request:**
 
@@ -119,11 +118,11 @@ The `User` endpoint is responsible for managing user-related actions within the 
 
 **Response:** Returns a response with the generated recovery code if the 2FA setup is successful.
 
-#### Delete Account
+### Delete Account
+
+Delete a user account and associated data.
 
 **Endpoint:** `DELETE /api/user/delete`
-
-**Description:** Deletes a user account and associated data.
 
 **Request:**
 
@@ -140,5 +139,3 @@ The `User` endpoint is responsible for managing user-related actions within the 
 - `code`: The current TOTP code (Only if 2-fa is enabled).
 
 **Response:** Returns a standard response indicating the success or failure of the account deletion.
-
-### Important Notes

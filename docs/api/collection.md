@@ -1,16 +1,16 @@
 # Collection Endpoint
 
-## Collection
+The `Collection` endpoint manages operations related to user collections in the LibrePass application.
+This includes inserting new collections, retrieving all collections, fetching a specific collection,
+updating a collection, and deleting a collection.
 
-The `Collection` endpoint manages operations related to user collections in the LibrePass application. This includes inserting new collections, retrieving all collections, fetching a specific collection, updating a collection, and deleting a collection.
+## Endpoints
 
-### Endpoints
+### Save Collection
 
-#### Save Collection
+Update or create a new collection for the authenticated user.
 
 **Endpoint:** `PUT /api/collection`
-
-**Description:** Updates or creates a new collection for the authenticated user.
 
 **Request:**
 
@@ -23,39 +23,73 @@ The `Collection` endpoint manages operations related to user collections in the 
 
 **Where:**
 
-- `id`: The cipher identifier (UUID).
+- `id`: The cipher identifier.
 - `name`: The name of the collection.
 
-**Response:** Returns the ID of the newly created collection.
+**Response:**
 
-#### Get All Collections
+```json
+{
+  "id": "uuid"
+}
+```
+
+### Get All Collections
+
+Retrieve all collections for the authenticated user.
 
 **Endpoint:** `GET /api/collection`
 
-**Description:** Retrieves all collections for the authenticated user.
+**Response:**
 
-**Response:** Returns an array of `CipherCollection` objects containing collection details.
+```json
+[
+  {
+    "id": "uuid",
+    "owner": "uuid",
+    "name": "string",
+    "created": "unix timestamp",
+    "updated": "unix timestamp"
+  }
+]
+```
 
-#### Get Collection
+### Get Collection
+
+Retrieve a specific collection for the authenticated user.
 
 **Endpoint:** `GET /api/collection/{id}`
-
-**Description:** Retrieves a specific collection for the authenticated user.
 
 **Path Parameter:**
 
 - `{id}`: ID of the collection to retrieve.
 
-**Response:** Returns the details of the specified collection in the form of a `CipherCollection` object.
+**Response:**
 
-#### Delete Collection
+```json
+{
+  "id": "uuid",
+  "owner": "uuid",
+  "name": "string",
+  "created": "unix timestamp",
+  "updated": "unix timestamp"
+}
+```
+
+### Delete Collection
+
+Delete a specific collection for the authenticated user.
 
 **Endpoint:** `DELETE /api/collection/{id}`
-
-**Description:** Deletes a specific collection for the authenticated user.
 
 **Path Parameter:**
 
 - `{id}`: ID of the collection to delete.
 
-**Response:** Returns the ID of the deleted collection.
+**Response:**
+
+```json
+{
+  "id": "uuid"
+}
+```

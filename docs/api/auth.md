@@ -1,16 +1,16 @@
 # Auth Endpoint
 
-## Auth
+The `Auth` endpoint is designed to handle user authentication-related actions for the LibrePass application.
+This includes user registration, login, two-factor authentication, password hint requests, email verification,
+and other related functionalities.
 
-The `Auth` endpoint is designed to handle user authentication-related actions for the LibrePass application. This includes user registration, login, two-factor authentication, password hint requests, email verification, and other related functionalities.
+## Endpoints
 
-### Endpoints
+### Register
 
-#### Register
+Create a new account and send a verification email.
 
 **Endpoint:** `POST /api/auth/register`
-
-**Description:** Allows users to register with the application, generating a verification token for email verification.
 
 **Request:**
 
@@ -31,30 +31,39 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 - `email`: The user's email address.
 - `passwordHint`: The user's password hint (optional).
 - `publicKey`: The user's public key (x25519 public key). More information about a public key you can read [here](../crypto/cryptography.md#public-key).
-- `sharedKey`: The shared key (x25519 shared key) exchanged beetween the user and the server. More information about a shared key you can read [here](../crypto/cryptography.md#user-authentication).
+- `sharedKey`: The shared key (x25519 shared key) exchanged between the user and the server. More information about a shared key you can read [here](../crypto/cryptography.md#user-authentication).
 - `parallelism`: The argon2id parameter (Default is 3).
 - `memory`: The argon2id parameter (Default is 64MiB).
 - `iterations`: The argon2id parameter (Default is 4).
 
 **Response:** Returns a standard response indicating the success or failure of the registration process.
 
-#### Pre-Login
+### Pre-Login
+
+Retrieve pre-login information, including argon2id parameters and the server's Curve25519 public key.
 
 **Endpoint:** `GET /api/auth/preLogin`
 
-**Description:** Retrieves pre-login information, including Argon2id parameters and the server's Curve25519 public key.
-
 **Query Parameters:**
 
-- `email` (optional): User's email for retrieving user-specific parameters.
+- `email`: User's email for retrieving user-specific parameters (optional).
 
-**Response:** Returns pre-login information based on the provided email or defaults if no email is specified.
+**Response:**
 
-#### OAuth
+```json
+{
+  "parallelism": 3,
+  "memory": 65536,
+  "iterations": 4,
+  "serverPublicKey": "x25519 public key"
+}
+```
+
+### OAuth
+
+Handle OAuth-based authentication, including login and two-factor authentication.
 
 **Endpoint:** `POST /api/auth/oauth`
-
-**Description:** Handles OAuth-based authentication, including login and two-factor authentication.
 
 **Query Parameters:**
 
@@ -62,38 +71,43 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
   
 **Request:**
 
+***For `login` grant type:***
+
 ```json
-// For login grant type
 {
   "email": "string",
   "sharedKey": "string"
 }
+```
 
-// For 2fa grant type
+***For `2fa` grant type:***
+
+```json
 {
-  "apiKey": "string", // API key from "login" grant_type
-  "code": "string" // 2-fa code
+  "apiKey": "string",
+  "code": "string"
 }
 ```
 
 **Where:**
 
-***For login grant type:***
+***For `login` grant type:***
 
 - `email`: The user's email address.
 - `sharedKey`: The shared key (x25519 shared key) exchanged between the user and the server. More information about a shared key you can read [here](../crypto/cryptography.md#user-authentication).
 
-***For 2fa grant type:***
+***For `2fa` grant type:***
+
 - `apiKey`: The API key from "login" grant type. This key will be verified after successful 2fa code verification.
-- `code`: The current one-time password.
+- `code`: The current one-time password (2-fa code).
 
 **Response:** Returns a standard response indicating the success or failure of the OAuth authentication process.
 
-#### Password Hint
+### Password Hint
+
+Send a password hint to the user based on their email.
 
 **Endpoint:** `GET /api/auth/passwordHint`
-
-**Description:** Sends a password hint to the user based on their email.
 
 **Query Parameters:**
 
@@ -101,11 +115,11 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 
 **Response:** Returns a standard response indicating the success or failure of sending the password hint.
 
-#### Verify Email
+### Verify Email
+
+Verify the user's email using a verification code. This link is included in verification email.
 
 **Endpoint:** `GET /api/auth/verifyEmail`
-
-**Description:** Verifies the user's email using a verification code. This link is included in verification email.
 
 **Query Parameters:**
 
@@ -114,11 +128,11 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 
 **Response:** Redirects to a page with information about a correctly verified email address or returns failure of email verification.
 
-#### Resend Verification Email
+### Resend Verification Email
+
+Resend the email verification code to the user.
 
 **Endpoint:** `GET /api/auth/resendVerificationEmail`
-
-**Description:** Resends the email verification code to the user.
 
 **Query Parameters:**
 
@@ -126,6 +140,6 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 
 **Response:** Returns a standard response indicating the success or failure of resending the verification email.
 
-### Important Notes
+## Important Notes
 
 - **Rate Limiting:** The endpoint is protected by rate limits.
