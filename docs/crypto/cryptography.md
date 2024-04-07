@@ -54,7 +54,7 @@ it is generated using the user's private key and the server's public key.
 X25519ComputeSharedSecret(userPrivateKey, serverPublicKey) -> authenticationSharedKey
 ```
 
-Then, the server verifies this key by doing the same thing, but uses its private key, and the user's private key.
+Then, the server verifies this key by doing the same thing, but uses its private key, and the user's public key.
 
 ```
 X25519ComputeSharedSecret(serverPrivateKey, userPublicKey) -> authenticationSharedKey
