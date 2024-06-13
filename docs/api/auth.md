@@ -4,6 +4,12 @@ The `Auth` endpoint is designed to handle user authentication-related actions fo
 This includes user registration, login, two-factor authentication, password hint requests, email verification,
 and other related functionalities.
 
+## Authentication flow
+
+A basic diagram that shows how authentication works.
+
+![Authentication diagram](../diagrams/authentication.drawio.svg)
+
 ## Endpoints
 
 ### Register
